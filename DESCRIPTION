@@ -1,0 +1,15 @@
+Package: giftwrap
+Title: For wrapping command line packages into R functions
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Chris",
+           family = "Cardillo",
+           role = c("aut", "cre"),
+           email = "cfcardillo23@gmail.com")
+Description: Wrapping command line functions into R functions, which in turn run the command line functions.
+Depends: R (>= 3.5.0)
+License: `use_mit_license()`
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
