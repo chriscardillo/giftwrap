@@ -29,6 +29,11 @@ To illustrate how the pacakge works, we'll create a giftwrap for our shell's `ec
 
 ```r
 create_giftwrap(command = "echo", env = globalenv())
+```
+
+Now our shell's `echo` command is available for us to use in R.
+
+```r
 echo("hello world")
 ```
 
