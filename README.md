@@ -38,7 +38,7 @@ If we wanted to collect the output of this shell command, we would just add the 
 echo("hello world", giftwrap_collect = T)
 ```
 
-## Loading in AWS Functions
+## Loading in AWS functions
 
 **This section assumes you are familiar with [AWS](https://aws.amazon.com/) and have the AWS CLI [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) on your local machine.**
 
@@ -51,6 +51,8 @@ As mentioned, giftwrap ships with a lexicon of the 7,000+ available AWS CLI func
 Let's take advantage of the `commands` and `subcommands` arguments to filter for just a handful of AWS EC2 and S3 commands. Also note we are specifying a global environment, and we will drop the base ('aws') from the R functions generated using `drop_base = T`.
 
 ```r
+library(giftwrap)
+
 load_lexicon(aws,
              commands = c("s3$", "ec2$"),
              subcommands = c("^ls$", "^cp$", "^describe-instances$"),
@@ -60,13 +62,13 @@ load_lexicon(aws,
 
 You should now have a few AWS functions, like `s3_ls` in your global R environment. You can run the command `s3_ls("help")` to get the AWS CLI help page for this command, or any others. Otherwise, you can now just pass in your arguments and use the AWS CLI from R.
 
-## Making Your Own Lexicon
+## Making your own lexicon
 
-Here is a quick example of creating a small lexicon for [docker](http://docker.io/).
+Here is a quick example of creating a small lexicon for [docker](http://docker.io/), which we assume you have [installed](https://docs.docker.com/get-docker/).
 
 ```r
 library(giftwrap)
-library(tidyverse)
+library(dplyr)
 
 tibble(base = "docker",
        command = "image",
@@ -77,7 +79,7 @@ tibble(base = "docker",
 
 Now you have a few docker commands in your R global environment!
 
-## Adding giftwrap Functions to Packages
+## Adding giftwrap functions to packages
 
 If you are familiar with creating R packages, you may know you can specify actions to be taken when the package is loaded using the `.onLoad` function, in a file typically called `zzz.R` in the R folder of your package directory.
 
@@ -104,17 +106,19 @@ Here is a small code snippet using the `namespace` package (available on CRAN) a
 
 ```r
 library(giftwrap)
+library(dplyr)
 library(namespace)
 
-local_cli <- makeNamespace("local_cli")
+makeNamespace("docker")
 
-load_lexicon(aws,
-             commands = c("s3$", "ec2$"),
-             subcommands = c("^ls$", "^cp$", "^describe-instances$"),
-             env = local_cli,
-             drop_base = T)
+tibble(base = "docker",
+       command = "image",
+       subcommand = c("ls", "build"),
+       giftwrap_command = paste(base, command, subcommand)) %>%
+  load_lexicon(env = getRegisteredNamespace("docker"),
+               drop_base = T)
 
-local_cli::s3_ls("help")
+docker::image_ls()
 ```
 
 -----
