@@ -40,7 +40,7 @@ echo("hello world", giftwrap_collect = T)
 
 ## Loading in AWS Functions
 
-**This section assumes you are familiar with [AWS](https://aws.amazon.com/), [CloudFormation](https://aws.amazon.com/cloudformation/), and have the AWS CLI [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) on your local machine.**
+**This section assumes you are familiar with [AWS](https://aws.amazon.com/) and have the AWS CLI [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) on your local machine.**
 
 As mentioned, giftwrap ships with a lexicon of the 7,000+ available AWS CLI functions, a data frame called `aws`. I'd recommend against loading them all. Fortunately, you have two options for loading your desired functions:
 
