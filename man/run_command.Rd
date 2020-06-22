@@ -8,6 +8,8 @@ run_command(command, collect = FALSE)
 }
 \arguments{
 \item{command}{a shell command}
+
+\item{collect}{whether the output of the shell command should be collected in R}
 }
 \value{
 messages from the running command, errors if failure

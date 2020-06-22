@@ -33,6 +33,7 @@ giftwrap_command <- function(base_command, ...){
 #' Run command
 #'
 #' @param command a shell command
+#' @param collect whether the output of the shell command should be collected in R
 #' @return messages from the running command, errors if failure
 run_command <- function(command, collect=FALSE){
     message(command)
@@ -57,9 +58,10 @@ giftwrap <- function(base_command, ..., giftwrap_collect=F){
 }
 
 #' giftwrap factory function
+#' @importFrom utils capture.output
 #' @param command the shell command to be converted into an R function
 #' @param env the environment in which the function should be created
-#' @param base_replace remove the base from the function name by adding the base name here
+#' @param base_remove remove the base from the function name by adding the base name here
 #' @return A function exported to the specified environment
 #' @export
 create_giftwrap <-function(command, env, base_remove=NULL){
@@ -80,7 +82,7 @@ create_giftwrap <-function(command, env, base_remove=NULL){
 #' Load a functions from a lexicon into an environment
 #' @param lexicon a dataframe containing columns for base, command, subcommand, and giftwrap_command (the full command)
 #' @param commands regex filtering for any commands in the lexicon
-#' @param subcommand regex filtering for any subcommands in the lexicon
+#' @param subcommands regex filtering for any subcommands in the lexicon
 #' @param drop_base drop the base-level command from the caller function
 #' @param env the environment into which the giftwrap functions should be exported
 #' @return Functions exported to the specified environment

@@ -8,6 +8,8 @@ check_specific(v, name = NULL)
 }
 \arguments{
 \item{v}{named items to check}
+
+\item{name}{name of the argument being checked}
 }
 \value{
 error if list is not named

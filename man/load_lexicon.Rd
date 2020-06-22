@@ -11,11 +11,11 @@ load_lexicon(lexicon, commands = NULL, subcommands = NULL, drop_base = F, env)
 
 \item{commands}{regex filtering for any commands in the lexicon}
 
+\item{subcommands}{regex filtering for any subcommands in the lexicon}
+
 \item{drop_base}{drop the base-level command from the caller function}
 
 \item{env}{the environment into which the giftwrap functions should be exported}
-
-\item{subcommand}{regex filtering for any subcommands in the lexicon}
 }
 \value{
 Functions exported to the specified environment

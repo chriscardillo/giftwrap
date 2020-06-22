@@ -7,7 +7,7 @@
 check_named(list)
 }
 \arguments{
-\item{...}{named items to check}
+\item{list}{a list to check}
 }
 \value{
 error if list is not named

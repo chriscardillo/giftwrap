@@ -1,6 +1,6 @@
 #' Check to see if needed parameters are missing
 #' 
-#' @param ... named items to check
+#' @param list a list to check
 #' @return error if list is not named
 check_named <- function(list){
     if(is.null(names(list))){stop("Please only pass named arguments to this function")}
@@ -24,6 +24,7 @@ check_null <- function(...){
 #' Ensure specificity for certain functions
 #' 
 #' @param v named items to check
+#' @param name name of the argument being checked
 #' @return error if list is not named
 check_specific <- function(v, name = NULL){
     if(length(v) > 1){stop(paste("argument", name, "should be of length 1. Found many."))}

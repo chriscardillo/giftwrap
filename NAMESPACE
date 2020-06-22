@@ -2,3 +2,4 @@
 
 export(create_giftwrap)
 export(load_lexicon)
+importFrom(utils,capture.output)

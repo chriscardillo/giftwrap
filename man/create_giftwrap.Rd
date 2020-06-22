@@ -11,7 +11,7 @@ create_giftwrap(command, env, base_remove = NULL)
 
 \item{env}{the environment in which the function should be created}
 
-\item{base_replace}{remove the base from the function name by adding the base name here}
+\item{base_remove}{remove the base from the function name by adding the base name here}
 }
 \value{
 A function exported to the specified environment
