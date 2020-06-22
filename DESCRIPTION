@@ -8,7 +8,7 @@ Authors@R:
            email = "cfcardillo23@gmail.com")
 Description: Wrapping command line functions into R functions, which in turn run the command line functions.
 Depends: R (>= 3.5.0)
-License: `use_mit_license()`
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
