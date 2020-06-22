@@ -100,9 +100,9 @@ The following is a short code snippet you may place in `zzz.R` that allows you t
 
 ## Useful Environment Tip: Session Namespaces
 
-It can be annoying to have too many functions floating around your global environment, but fortunately you can utilize giftwrap alongside the `namespace` package to confine your giftwrapped functions to a local namespace. 
+It can be annoying to have too many functions floating around your global environment, but fortunately you can utilize giftwrap alongside the `namespace` package to confine your giftwrapped functions to a local namespace within your R session.
 
-Here is a small code snippet using the `namespace` package (available on CRAN) and giftwrap's aws lexicon to get you started:
+Here is a small code snippet using the `namespace` package (available on CRAN) and giftwrap to build on our previous example, but now our giftwrapped functions are accessed from within a local namespace called "docker".
 
 ```r
 library(giftwrap)
