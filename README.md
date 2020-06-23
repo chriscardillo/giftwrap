@@ -36,7 +36,7 @@ library(giftwrap)
 
 ## Loading in functions from AWS
 
-To help kickstart your deveopment, giftwrap comes with a lexicon for the AWS CLI. With over 7,000 functions, as long as you have the AWS CLI [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) on your local machine, you'll be able to immediately copy things to S3, translate text into different languages, stand up EC2 instances, andy any anything else you can do from the AWS command line.
+To help kickstart your deveopment, giftwrap comes with a lexicon for the AWS CLI. With over 7,000 functions, as long as you have the AWS CLI [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) on your local machine, you'll be able to immediately copy things to S3, translate text into different languages, stand up EC2 instances, and any anything else you can do from the AWS command line.
 
 For filtering, you have two options for loading your desired functions:
 
