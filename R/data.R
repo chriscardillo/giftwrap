@@ -11,4 +11,4 @@
 #'   ...
 #' }
 #' @source made by scraping AWS CLI help docs
-"aws"
+"lexicon_aws"

@@ -49,7 +49,7 @@ Now, we have can access different outputs, such as status and stdout from the co
 
 **This section assumes you are familiar with [AWS](https://aws.amazon.com/) and have the AWS CLI [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) on your local machine.**
 
-As mentioned, giftwrap ships with a lexicon of the 7,000+ available AWS CLI functions, a data frame called `aws`. I'd recommend against loading them all. Fortunately, you have two options for loading your desired functions:
+As mentioned, giftwrap ships with a lexicon of the 7,000+ available AWS CLI functions, a data frame called `lexicon_aws`. I'd recommend against loading them all. Fortunately, you have two options for loading your desired functions:
 
 1) Simply use your favorite data manipulation tool (most likely `dplyr`) to filter for the AWS CLI commands you wish to load, and pass the filtered lexicon to `load_lexicon`.
 
@@ -60,7 +60,7 @@ Let's take advantage of the `commands` and `subcommands` arguments to filter for
 ```r
 library(giftwrap)
 
-load_lexicon(aws,
+load_lexicon(lexicon_aws,
              commands = c("s3$", "ec2$"),
              subcommands = c("^ls$", "^cp$", "^describe-instances$"),
              env = globalenv(),
@@ -95,10 +95,10 @@ The following is a short code snippet you may place in `zzz.R` that allows you t
 ```r
 #' Generates functions on load
 #' @importFrom rlang env_parents
-#' @importFrom giftwrap load_lexicon aws
+#' @importFrom giftwrap load_lexicon lexicon_aws
 .onLoad <- function(libname, pkgname) {
     ns_package <- rlang::env_parents()[[1]]
-    giftwrap::load_lexicon(giftwrap::aws,
+    giftwrap::load_lexicon(giftwrap::lexicon_aws,
                            commands = c("s3$"),
                            env = ns_package,
                            drop_base = T)
