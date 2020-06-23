@@ -1,16 +1,27 @@
 # giftwrap
-`giftwrap` is a lightweight package for wrapping shell commands in R. This allows R developers to immediately interface in R with any command line tool of their choosing. In short, you give giftwrap a shell command and an R environment in which to export that command, and giftwrap creates an R function for that shell command.
+`giftwrap` is a lightweight package for wrapping shell commands in R, allowing R developers to interface with command line tools from services like AWS, Salesforce, Docker, git, and more. Here's how it works: 
 
-Plus, any function created with giftwrap will convert named arguments into shell arguments.
+First, `wrap` a shell command. Here we will wrap `echo`.
 
-giftwrap employs two functions which we'll cover in more detail below:
+```r
+wrap("echo", env = globalenv())
+```
 
-- `wrap_commands` - Pass in shell commands in quotations to get out R functions
-- `wrap_lexicon` - Utilize a dataframe of shell commands to get out R functions
+giftwrap takes the shell command and turns it into an R function in your global environment. Now you can use the `echo` function to execute the shell command.
 
-Once a giftwrap function has been generated, users can just call the shell command from R. Messages from the shell will be passed directly to the console. All output from the command, such as status and stdout, can be captured by saving the giftwrapped function's output to a variable.
+```r
+echo("hello world")
+```
 
-Please see below from some examples and use cases. Note that giftwrap ships with a lexicon for the AWS CLI, and it is very easy to make your own lexicon for your favorite command line tools.
+You can capture the status, stdout, and stderr from your call to the shell using variable assignment.
+
+```r
+output <- echo("hello world")
+output$status
+output$stdout
+```
+
+Below covers how to utilize giftwrap with some more popular command line tools.
 
 -----
 
@@ -23,33 +34,11 @@ devtools::install_github("chriscardillo/giftwrap")
 library(giftwrap)
 ```
 
-## Hello World
+## Loading in functions from AWS
 
-To illustrate how the pacakge works, we'll create a giftwrap for our shell's `echo` command, and export this command into R's global environment.
+To help kickstart your deveopment, giftwrap comes with a lexicon for the AWS CLI. With over 7,000 functions, as long as you have the AWS CLI [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) on your local machine, you'll be able to immediately copy things to S3, translate text into different languages, stand up EC2 instances, andy any anything else you can do from the AWS command line.
 
-```r
-wrap_commands("echo", env = globalenv())
-```
-
-Now our shell's `echo` command is available for us to use in R.
-
-```r
-echo("hello world")
-```
-
-If we wanted to collect the output of this shell command, we would just save the output to a variable.
-
-```r
-command_output <- echo("hello world")
-```
-
-Now, we have can access different outputs, such as status and stdout from the command using `command_output$status` or `command_output$stdout`, respectively.
-
-## Loading in AWS functions
-
-**This section assumes you are familiar with [AWS](https://aws.amazon.com/) and have the AWS CLI [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) on your local machine.**
-
-As mentioned, giftwrap ships with a lexicon of the 7,000+ available AWS CLI functions, a data frame called `lexicon_aws`. It's not pragmatic to load them all. Fortunately, you have two options for loading your desired functions:
+For filtering, you have two options for loading your desired functions:
 
 1) Simply use your favorite data manipulation tool (most likely `dplyr`) to filter for the AWS CLI commands you wish to load, and pass the filtered lexicon to `wrap_lexicon`.
 
@@ -67,7 +56,7 @@ wrap_lexicon(lexicon_aws,
              drop_base = T)
 ```
 
-You should now have a few AWS functions, like `s3_ls` in your global R environment. You can run the command `s3_ls("help")` to get the AWS CLI help page for this command, or any others. Otherwise, you can now just pass in your arguments and use the AWS CLI from R.
+You should now have a few AWS functions, like `s3_ls` in your global R environment. You can run the command `s3_ls()` to list your s3 buckets. Otherwise, you can now just pass in your arguments and use the AWS CLI from R.
 
 ## Making your own lexicon
 
