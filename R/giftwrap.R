@@ -79,7 +79,6 @@ create_giftwrap <-function(command, env=parent.frame(), base_remove=NULL){
 #' @export
 load_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, env=parent.frame()){
     check_lexicon(lexicon)
-    force(create_giftwrap)
     if(!is.null(commands)){
         lexicon <- lexicon[grep(paste(commands, collapse = "|"), lexicon$command), ]
     }
