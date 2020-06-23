@@ -47,25 +47,32 @@ giftwrap <- function(command, ...){
     invisible(processx::run(command = base_command, args = px_run_args, echo_cmd = T, echo = T))
 }
 
-#' giftwrap factory function
+#' To convert shell commands into giftwrapped functions
 #' @importFrom utils capture.output
-#' @param command the shell command to be converted into an R function
+#' @param ... shell commands to be turned into giftwrapped functions
 #' @param env the environment in which the function should be created
 #' @param base_remove remove the base from the function name by adding the base name here
-#' @return A function exported to the specified environment
+#' @return A function or functions exported to the specified environment
 #' @export
-create_giftwrap <-function(command, env=parent.frame(), base_remove=NULL){
+wrap_commands <- function(..., env=parent.frame(), base_remove=NULL){
     if(class(env) != "environment"){
         stop("Please pass an environment to the env arugment.")
     }
-    function_name <- gsub("[- ]+", "_", command)
-    if(!is.null(base_remove)){
-        function_name <- gsub(paste(paste0("^", paste0(base_remove, "_")), collapse = "|"), "", function_name)
-    }
-    fun <- eval(parse(text = paste0("function(...){\n\tgiftwrap('", command,"', ...)\n}")))
-    assign(function_name, fun, pos = env)
-    if(grepl("namespace", utils::capture.output(env))){
-        namespaceExport(env, function_name)
+    functions <- list(...)
+    for(i in 1:length(functions)){
+        fun_list <- functions[i]
+        command <- fun_list[[1]]
+        fun <- eval(parse(text = paste0("function(...){\n\tgiftwrap('", command,"', ...)\n}")))
+        fun_name <- gsub("[- ]+", "_", command)
+        if(!is.null(names(fun_list)) && names(fun_list) != ""){
+            fun_name <- names(fun_list)
+        } else if(!is.null(base_remove)){
+            fun_name <- gsub(paste(paste0("^", paste0(base_remove, "_")), collapse = "|"), "", fun_name)
+        }
+        assign(fun_name, fun, pos = env)
+        if(grepl("namespace", utils::capture.output(env))){
+            namespaceExport(env, function_name)
+        }
     }
 }
 
@@ -77,7 +84,7 @@ create_giftwrap <-function(command, env=parent.frame(), base_remove=NULL){
 #' @param env the environment into which the giftwrap functions should be exported
 #' @return Functions exported to the specified environment
 #' @export
-load_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, env=parent.frame()){
+wrap_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, env=parent.frame()){
     check_lexicon(lexicon)
     if(!is.null(commands)){
         lexicon <- lexicon[grep(paste(commands, collapse = "|"), lexicon$command), ]
@@ -88,11 +95,11 @@ load_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, e
     # boo hoo a for loop
     if(drop_base){
         for(giftwrap_command in unique(lexicon$giftwrap_command)){
-            create_giftwrap(giftwrap_command, env, base_remove = unique(lexicon$base))
+            wrap_commands(giftwrap_command, env=env, base_remove = unique(lexicon$base))
         }
     } else {
         for(giftwrap_command in unique(lexicon$giftwrap_command)){
-            create_giftwrap(giftwrap_command, env)
+            wrap_commands(giftwrap_command, env=env)
         }
     } 
 }
