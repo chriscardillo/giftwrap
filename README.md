@@ -8,7 +8,7 @@ giftwrap employs two functions which we'll cover in more detail below:
 - `create_giftwrap` - For wrapping a single shell command into an R function
 - `load_lexicon` - For generating multiple R functions out of multiple shell commands
 
-Once a giftwrap function has been generated, users can just call the shell command from R. Messages from the shell will be passed directly to the console, and users even have the option to collect any output from a shell command using the argument `giftwrap_collect = T`.
+Once a giftwrap function has been generated, users can just call the shell command from R. Messages from the shell will be passed directly to the console. All output from the command, such as status and stdout, can be captured by saving the giftwrapped function's output to a variable.
 
 Please see below from some examples and use cases. Note that giftwrap ships with a lexicon for the AWS CLI, and it is very easy to make your own lexicon for your favorite command line tools.
 
@@ -37,11 +37,13 @@ Now our shell's `echo` command is available for us to use in R.
 echo("hello world")
 ```
 
-If we wanted to collect the output of this shell command, we would just add the argument `giftwrap_collect = T`.
+If we wanted to collect the output of this shell command, we would just save the output to a variable.
 
 ```r
-echo("hello world", giftwrap_collect = T)
+command_output <- echo("hello world")
 ```
+
+Now, we have can access different outputs, such as status and stdout from the command using `command_output$status` or `command_output$stdout`, respectively.
 
 ## Loading in AWS functions
 

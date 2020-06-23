@@ -4,14 +4,12 @@
 \alias{giftwrap}
 \title{The caller function that will live inside of factory function}
 \usage{
-giftwrap(base_command, ..., giftwrap_collect = F)
+giftwrap(command, ...)
 }
 \arguments{
-\item{base_command}{a shell command}
+\item{command}{a shell command}
 
 \item{...}{named and unnamed arguments to be giftwrapped}
-
-\item{giftwrap_collect}{a logical if the output of the shell command should be captured in R}
 }
 \value{
 messages from the running command, errors if failure

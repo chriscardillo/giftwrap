@@ -7,7 +7,7 @@
 format_arg(x)
 }
 \arguments{
-\item{x}{the argument to be passed to the shell command. Both named arguments and unnamed arguments work.}
+\item{x}{the argument to be passed to the shell command. Both named arguments and unnamed arguments work. A list is expected.}
 }
 \value{
 a shell-formatted argument

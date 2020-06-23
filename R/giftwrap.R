@@ -1,60 +1,50 @@
 #' Create an argument with shell formatting
 #'
-#' @param x the argument to be passed to the shell command. Both named arguments and unnamed arguments work.
+#' @param x the argument to be passed to the shell command. Both named arguments and unnamed arguments work. A list is expected.
 #' @return a shell-formatted argument
 format_arg <- function(x){
-    if(!is.null(names(x)) && names(x) != ""){
-        trimws(sprintf("--%s %s", gsub("_", "-", names(x)), paste(x[[1]], collapse = " ")))
-    } else {
-        paste(x[[1]], collapse = " ")
+    if(class(x) != "list"){
+        stop("x should be of class list.")
     }
+    name <- NULL
+    arg <- suppressWarnings({if(nchar(x[[1]])>0){x[[1]]}else{NULL}})
+    if(!is.null(names(x)) && names(x) != ""){
+        name <- ifelse(nchar(names(x)) == 1, sprintf("-%s", names(x)), sprintf("--%s", names(x)))
+    }
+    c(name, arg)
 }
 
-#' giftwrap a base command and its arguments from R to shell
+#' format multiple arguments
 #'
-#' @param base_command a shell command
-#' @param ... named and unnamed arguments to be giftwrapped
-#' @return a shell-formatted command with shell-formatted arguments
-giftwrap_command <- function(base_command, ...){
+#' @param ... named and unnamed arguments to be formatted
+#' @return a vector of properly formatted arguments
+format_args <- function(...){
     args <- list(...)
-    args_formatted <- c()
+    args_formatted <- list()
     # boo hoo a for loop
     if(length(args) > 0){
         for(i in 1:length(args)){
             if(!is.null(args[[i]])){
-                args_formatted[i] <- format_arg(args[i])
+                args_formatted[[i]] <- format_arg(args[i])
             }
         }
     }
-    args_formatted <- args_formatted[which(!is.na(args_formatted))]
-    paste(base_command, paste(args_formatted, collapse = " "))
-}
-
-#' Run command
-#'
-#' @param command a shell command
-#' @param collect whether the output of the shell command should be collected in R
-#' @return messages from the running command, errors if failure
-run_command <- function(command, collect=FALSE){
-    message(command)
-    if(collect){
-        results <- system(command, intern=collect)
-        results
-    } else {
-        results <- system(command)
-        if(results != 0){stop(sprintf("Command failed. Exit status: %s", results))}
-    }
+    unlist(args_formatted)
 }
 
 #' The caller function that will live inside of factory function
 #'
-#' @param base_command a shell command
-#' @param giftwrap_collect a logical if the output of the shell command should be captured in R
+#' @importFrom processx run
+#' @param command a shell command
 #' @param ... named and unnamed arguments to be giftwrapped
 #' @return messages from the running command, errors if failure
-giftwrap <- function(base_command, ..., giftwrap_collect=F){
-    command <- giftwrap_command(base_command, ...)
-    run_command(command, collect=giftwrap_collect)
+giftwrap <- function(command, ...){
+    full_command <- unlist(strsplit(trimws(command), " "))
+    base_command <- full_command[1]
+    subcommands <- full_command[!full_command %in% base_command]
+    args <- format_args(...)
+    px_run_args <- c(subcommands, args)
+    invisible(processx::run(command = base_command, args = px_run_args, echo_cmd = T, echo = T))
 }
 
 #' giftwrap factory function
@@ -72,7 +62,7 @@ create_giftwrap <-function(command, env=parent.frame(), base_remove=NULL){
     if(!is.null(base_remove)){
         function_name <- gsub(paste(paste0("^", paste0(base_remove, "_")), collapse = "|"), "", function_name)
     }
-    fun <- eval(parse(text = paste0("function(..., giftwrap_collect=F){\n\tgiftwrap('", command,"', ..., giftwrap_collect=giftwrap_collect)\n}")))
+    fun <- eval(parse(text = paste0("function(...){\n\tgiftwrap('", command,"', ...)\n}")))
     assign(function_name, fun, pos = env)
     if(grepl("namespace", utils::capture.output(env))){
         namespaceExport(env, function_name)
