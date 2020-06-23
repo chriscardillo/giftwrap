@@ -98,12 +98,8 @@ wrap_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, e
     }
     # boo hoo a for loop
     if(drop_base){
-        for(giftwrap_command in unique(lexicon$giftwrap_command)){
-            wrap_commands(giftwrap_command, env=env, base_remove = unique(lexicon$base))
-        }
+        wrap_commands(lexicon$giftwrap_command, env=env, base_remove = unique(lexicon$base))
     } else {
-        for(giftwrap_command in unique(lexicon$giftwrap_command)){
-            wrap_commands(giftwrap_command, env=env)
-        }
+        wrap_commands(giftwrap_command, env=env)
     } 
 }
