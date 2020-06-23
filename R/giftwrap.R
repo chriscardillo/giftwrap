@@ -59,6 +59,10 @@ wrap_commands <- function(..., env=parent.frame(), base_remove=NULL){
         stop("Please pass an environment to the env arugment.")
     }
     functions <- list(...)
+    # Support a vector or the dots
+    if(length(functions) == 1 && (length(functions[[1]]) > 1)){
+        functions <- as.list(functions[[1]])
+    }
     for(i in 1:length(functions)){
         fun_list <- functions[i]
         command <- fun_list[[1]]
