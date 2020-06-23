@@ -4,7 +4,7 @@
 First, `wrap` a shell command. Here we will wrap `echo`.
 
 ```r
-wrap("echo", env = globalenv())
+wrap_commands("echo", env = globalenv())
 ```
 
 giftwrap takes the shell command and turns it into an R function in your global environment. Now you can use the `echo` function to execute the shell command.
