@@ -71,7 +71,7 @@ wrap_commands <- function(..., env=parent.frame(), base_remove=NULL){
         }
         assign(fun_name, fun, pos = env)
         if(grepl("namespace", utils::capture.output(env))){
-            namespaceExport(env, function_name)
+            namespaceExport(env, fun_name)
         }
     }
 }
