@@ -4,7 +4,13 @@
 \alias{load_lexicon}
 \title{Load a functions from a lexicon into an environment}
 \usage{
-load_lexicon(lexicon, commands = NULL, subcommands = NULL, drop_base = F, env)
+load_lexicon(
+  lexicon,
+  commands = NULL,
+  subcommands = NULL,
+  drop_base = F,
+  env = parent.frame()
+)
 }
 \arguments{
 \item{lexicon}{a dataframe containing columns for base, command, subcommand, and giftwrap_command (the full command)}

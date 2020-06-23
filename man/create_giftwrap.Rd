@@ -4,7 +4,7 @@
 \alias{create_giftwrap}
 \title{giftwrap factory function}
 \usage{
-create_giftwrap(command, env, base_remove = NULL)
+create_giftwrap(command, env = parent.frame(), base_remove = NULL)
 }
 \arguments{
 \item{command}{the shell command to be converted into an R function}

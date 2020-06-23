@@ -64,7 +64,7 @@ giftwrap <- function(base_command, ..., giftwrap_collect=F){
 #' @param base_remove remove the base from the function name by adding the base name here
 #' @return A function exported to the specified environment
 #' @export
-create_giftwrap <-function(command, env, base_remove=NULL){
+create_giftwrap <-function(command, env=parent.frame(), base_remove=NULL){
     if(class(env) != "environment"){
         stop("Please pass an environment to the env arugment.")
     }
@@ -74,7 +74,7 @@ create_giftwrap <-function(command, env, base_remove=NULL){
     }
     fun <- eval(parse(text = paste0("function(..., giftwrap_collect=F){\n\tgiftwrap('", command,"', ..., giftwrap_collect=giftwrap_collect)\n}")))
     assign(function_name, fun, pos = env)
-    if(grepl("namespace", capture.output(env))){
+    if(grepl("namespace", utils::capture.output(env))){
         namespaceExport(env, function_name)
     }
 }
@@ -87,7 +87,7 @@ create_giftwrap <-function(command, env, base_remove=NULL){
 #' @param env the environment into which the giftwrap functions should be exported
 #' @return Functions exported to the specified environment
 #' @export
-load_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, env){
+load_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, env=parent.frame()){
     check_lexicon(lexicon)
     force(create_giftwrap)
     if(!is.null(commands)){
