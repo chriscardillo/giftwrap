@@ -38,7 +38,7 @@ library(giftwrap)
 
 To help kickstart your deveopment, giftwrap comes with a lexicon for the AWS CLI. With over 7,000 functions, as long as you have the AWS CLI [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) on your local machine, you'll be able to immediately copy things to S3, translate text into different languages, stand up EC2 instances, and any anything else you can do from the AWS command line.
 
-For filtering down to a subset of desired functions, you have two options:
+For filtering down to a subset of desired commands, you have two options:
 
 1) Simply use your favorite data manipulation tool (most likely `dplyr`) to filter for the AWS CLI commands you wish to load, and pass the filtered lexicon to `wrap_lexicon`.
 
