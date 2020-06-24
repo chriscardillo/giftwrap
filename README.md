@@ -1,3 +1,7 @@
+<!-- badges: start -->
+[![R build status](https://github.com/chriscardillo/giftwrap/workflows/R-CMD-check/badge.svg)](https://github.com/chriscardillo/giftwrap/actions)
+<!-- badges: end -->
+
 # giftwrap
 `giftwrap` is a lightweight package for wrapping shell commands in R, allowing R developers to interface with command line tools from services like AWS, Salesforce, Docker, git, and more. Here's how it works: 
 
