@@ -93,17 +93,16 @@ The following is a short code snippet you may place in `zzz.R` that allows you t
 
 ```r
 #' Generates functions on load
-#' @importFrom rlang env_parents
 #' @importFrom giftwrap wrap_lexicon
 .onLoad <- function(libname, pkgname) {
-    ns_package <- rlang::env_parents()[[1]]
     giftwrap::wrap_lexicon(giftwrap::lexicon_aws,
-                           commands = "s3$",
+                           commands = c("s3$"),
                            subcommands = "^ls$|^cp$|^describe-instances$",
-                           env = ns_package,
+                           use_namespace = "mycoolpackage",
                            drop_base = T)
 }
 ```
+
 -----
 
 Happy giftwrapping!
