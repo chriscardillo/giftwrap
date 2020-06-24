@@ -4,7 +4,12 @@
 \alias{wrap_commands}
 \title{To convert shell commands into giftwrapped functions}
 \usage{
-wrap_commands(..., env = parent.frame(), base_remove = NULL)
+wrap_commands(
+  ...,
+  env = parent.frame(),
+  base_remove = NULL,
+  use_namespace = NULL
+)
 }
 \arguments{
 \item{...}{shell commands to be turned into giftwrapped functions}
@@ -12,6 +17,8 @@ wrap_commands(..., env = parent.frame(), base_remove = NULL)
 \item{env}{the environment in which the function should be created}
 
 \item{base_remove}{remove the base from the function name by adding the base name here}
+
+\item{use_namespace}{a character string of a namespace to use for the resulting functions}
 }
 \value{
 A function or functions exported to the specified environment

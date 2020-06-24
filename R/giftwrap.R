@@ -49,19 +49,26 @@ giftwrap <- function(command, ...){
 
 #' To convert shell commands into giftwrapped functions
 #' @importFrom utils capture.output
+#' @importFrom namespace getRegisteredNamespace makeNamespace
 #' @param ... shell commands to be turned into giftwrapped functions
 #' @param env the environment in which the function should be created
 #' @param base_remove remove the base from the function name by adding the base name here
+#' @param use_namespace a character string of a namespace to use for the resulting functions
 #' @return A function or functions exported to the specified environment
 #' @export
-wrap_commands <- function(..., env=parent.frame(), base_remove=NULL){
+wrap_commands <- function(..., env=parent.frame(), base_remove=NULL, use_namespace=NULL){
     if(class(env) != "environment"){
         stop("Please pass an environment to the env arugment.")
     }
     functions <- list(...)
-    # Support a vector or the dots
     if(length(functions) == 1 && (length(functions[[1]]) > 1)){
         functions <- as.list(functions[[1]])
+    }
+    if(!is.null(use_namespace)){
+      if(is.null(namespace::getRegisteredNamespace(use_namespace))){
+        namespace::makeNamespace(use_namespace)
+      }
+      env <- namespace::getRegisteredNamespace(use_namespace)
     }
     for(i in 1:length(functions)){
         fun_list <- functions[i]
