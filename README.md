@@ -56,8 +56,8 @@ Let's take advantage of the `commands` and `subcommands` arguments to filter for
 library(giftwrap)
 
 wrap_lexicon(lexicon_aws,
-             commands = c("s3$", "ec2$"),
-             subcommands = c("^ls$", "^cp$", "^describe-instances$"),
+             commands = "s3$|ec2$",
+             subcommands = "^ls$|^cp$|^describe-instances$",
              env = globalenv(),
              drop_base = T)
 ```
