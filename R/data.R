@@ -42,3 +42,18 @@
 #' }
 #' @source made by scraping docker help docs
 "lexicon_docker"
+
+#' A giftwrap-formatted lexicon of all Salesforce developer tools (sfdx force) commands
+#'
+#' A dataset containing all base, commands, and subcommands from Salesforce developer tools (sfdx force)
+#'
+#' @format A dataset containing all base, commands, and subcommands from Salesforce developer tools (sfdx force)
+#' \describe{
+#'   \item{base}{the base, always 'sfdc force'}
+#'   \item{command}{the command/service, such as data}
+#'   \item{subcommand}{the subcommand for the command/service, such as bulk:upsert}
+#'   \item{giftwrap_command}{the base, command, and subcommand together, specially formatted for sfdx}
+#'   ...
+#' }
+#' @source made by scraping docker help docs
+"lexicon_sfdx_force"

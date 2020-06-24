@@ -67,11 +67,11 @@ wrap_commands <- function(..., env=parent.frame(), base_remove=NULL){
         fun_list <- functions[i]
         command <- fun_list[[1]]
         fun <- eval(parse(text = paste0("function(...){\n\tgiftwrap('", command,"', ...)\n}")))
-        fun_name <- gsub("[- ]+", "_", command)
+        fun_name <- gsub("[- :]+", "_", command)
         if(!is.null(names(fun_list)) && names(fun_list) != ""){
             fun_name <- names(fun_list)
         } else if(!is.null(base_remove)){
-            fun_name <- gsub(paste(paste0("^", paste0(base_remove, "_")), collapse = "|"), "", fun_name)
+            fun_name <- gsub(paste(paste0("^", paste0(gsub("[- :]+", "_", base_remove), "_")), collapse = "|"), "", fun_name)
         }
         assign(fun_name, fun, pos = env)
         if(grepl("namespace", utils::capture.output(env))){
