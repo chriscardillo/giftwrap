@@ -10,7 +10,7 @@ wrap_lexicon(
   subcommands = NULL,
   drop_base = F,
   env = parent.frame(),
-  create_namespace = NULL
+  use_namespace = NULL
 )
 }
 \arguments{
@@ -24,7 +24,7 @@ wrap_lexicon(
 
 \item{env}{the environment into which the giftwrap functions should be exported}
 
-\item{create_namespace}{a character string of a namespace for giftwrap to create and export the lexicon functions into}
+\item{use_namespace}{a character string of a namespace for giftwrap to create and export the lexicon functions into}
 }
 \value{
 Functions exported to the specified environment

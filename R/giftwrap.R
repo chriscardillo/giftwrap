@@ -87,10 +87,10 @@ wrap_commands <- function(..., env=parent.frame(), base_remove=NULL){
 #' @param subcommands regex filtering for any subcommands in the lexicon
 #' @param drop_base drop the base-level command from the caller function
 #' @param env the environment into which the giftwrap functions should be exported
-#' @param create_namespace a character string of a namespace for giftwrap to create and export the lexicon functions into
+#' @param use_namespace a character string of a namespace for giftwrap to create and export the lexicon functions into
 #' @return Functions exported to the specified environment
 #' @export
-wrap_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, env=parent.frame(), create_namespace=NULL){
+wrap_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, env=parent.frame(), use_namespace=NULL){
     check_lexicon(lexicon)
     if(!is.null(commands)){
         lexicon <- lexicon[grep(paste(commands, collapse = "|"), lexicon$command), ]
@@ -98,11 +98,11 @@ wrap_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, e
     if(!is.null(subcommands)){
         lexicon <- lexicon[grep(paste(subcommands, collapse = "|"), lexicon$subcommand), ]
     }
-    if(!is.null(create_namespace)){
-      if(is.null(namespace::getRegisteredNamespace(create_namespace))){
-        namespace::makeNamespace(create_namespace)
+    if(!is.null(use_namespace)){
+      if(is.null(namespace::getRegisteredNamespace(use_namespace))){
+        namespace::makeNamespace(use_namespace)
       }
-      env <- namespace::getRegisteredNamespace(create_namespace)
+      env <- namespace::getRegisteredNamespace(use_namespace)
     }
     if(length(lexicon$giftwrap_command) > 0){
       if(drop_base){
