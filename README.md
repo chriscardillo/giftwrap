@@ -106,7 +106,7 @@ The following is a short code snippet you may place in `zzz.R` that allows you t
     giftwrap::wrap_lexicon(giftwrap::lexicon_aws,
                            commands = c("s3$"),
                            subcommands = "^ls$|^cp$|^describe-instances$",
-                           use_namespace = "mycoolpackage",
+                           use_namespace = "yourpackagenamehere",
                            drop_base = T)
 }
 ```
