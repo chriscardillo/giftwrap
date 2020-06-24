@@ -78,7 +78,7 @@ giftwrap currently comes with the following lexicons:
   - `lexicon_git` - <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">git</a>
   - `lexicon_sfdx_force` - <a href="https://developer.salesforce.com/blogs/2018/02/getting-started-salesforce-dx-part-3-5.html" target="_blank">Salesforce CLI (Developer Tools)</a>
 
-###### Making your own lexicon
+#### Making your own lexicon
 
 Using `lexicon_aws` as an example, each lexicon contain columns for:
 
