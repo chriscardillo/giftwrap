@@ -67,7 +67,6 @@ output$status
 output$stdout
 ```
 
-
 ## Current lexicons
 
 #### Lexicons
@@ -91,7 +90,6 @@ Using `lexicon_aws` as an example, each lexicon contain columns for:
 If you follow the format of an existing lexicon, you will likely be able to use `wrap_lexicon` with any command line tool of your choosing.
 
 Note that all of the functionality in `wrap_lexicon` is identical to that of `wrap_commands`. `wrap_lexicon` just works with a dataframe, formatted as previously discussed. The hope is that `wrap_lexicon` will allow you to keep your command line commands organized, accessible, and reproducible.
-
 
 ## Adding giftwrap functions to packages
 
