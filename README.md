@@ -67,9 +67,9 @@ output$status
 output$stdout
 ```
 
-## Current lexicons
+#### Current lexicons
 
-#### Lexicons
+###### Lexicons
 
 giftwrap currently comes with the following lexicons:
 
@@ -78,7 +78,7 @@ giftwrap currently comes with the following lexicons:
   - `lexicon_git` - <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">git</a>
   - `lexicon_sfdx_force` - <a href="https://developer.salesforce.com/blogs/2018/02/getting-started-salesforce-dx-part-3-5.html" target="_blank">Salesforce CLI (Developer Tools)</a>
 
-#### Making your own lexicon
+###### Making your own lexicon
 
 Using `lexicon_aws` as an example, each lexicon contain columns for:
 
@@ -91,7 +91,7 @@ If you follow the format of an existing lexicon, you will likely be able to use 
 
 Note that all of the functionality in `wrap_lexicon` is identical to that of `wrap_commands`. `wrap_lexicon` just works with a dataframe, formatted as previously discussed. The hope is that `wrap_lexicon` will allow you to keep your command line commands organized, accessible, and reproducible.
 
-## Adding giftwrap functions to packages
+#### Adding giftwrap functions to packages
 
 If you are familiar with creating R packages, you may know you can specify actions to be taken when the package is loaded using the `.onLoad` function, in a file typically called `zzz.R` in the R folder of your package directory.
 
