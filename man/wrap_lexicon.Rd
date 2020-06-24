@@ -23,6 +23,8 @@ wrap_lexicon(
 \item{drop_base}{drop the base-level command from the caller function}
 
 \item{env}{the environment into which the giftwrap functions should be exported}
+
+\item{create_namespace}{a character string of a namespace for giftwrap to create and export the lexicon functions into}
 }
 \value{
 Functions exported to the specified environment

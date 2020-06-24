@@ -87,6 +87,7 @@ wrap_commands <- function(..., env=parent.frame(), base_remove=NULL){
 #' @param subcommands regex filtering for any subcommands in the lexicon
 #' @param drop_base drop the base-level command from the caller function
 #' @param env the environment into which the giftwrap functions should be exported
+#' @param create_namespace a character string of a namespace for giftwrap to create and export the lexicon functions into
 #' @return Functions exported to the specified environment
 #' @export
 wrap_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, env=parent.frame(), create_namespace=NULL){
