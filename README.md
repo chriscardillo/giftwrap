@@ -67,7 +67,7 @@ output$status
 output$stdout
 ```
 
-#### Current lexicons
+#### Current Lexicons
 
 ###### Lexicons
 
