@@ -7,7 +7,7 @@
 ## Overview
 `giftwrap` is a lightweight package for wrapping shell commands in R, allowing R developers to interface with command line tools from services like AWS, Salesforce, Docker, git, and more. Here's how it works: 
 
-First, `wrap` a shell command. Here we will wrap `echo`.
+First, `wrap_commands` helps us wrap a shell command. Here we will wrap `echo`.
 
 ```r
 wrap_commands("echo", env = globalenv())
