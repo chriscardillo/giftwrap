@@ -105,17 +105,11 @@ wrap_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, e
     if(!is.null(subcommands)){
         lexicon <- lexicon[grep(paste(subcommands, collapse = "|"), lexicon$subcommand), ]
     }
-    if(!is.null(use_namespace)){
-      if(is.null(namespace::getRegisteredNamespace(use_namespace))){
-        namespace::makeNamespace(use_namespace)
-      }
-      env <- namespace::getRegisteredNamespace(use_namespace)
-    }
     if(length(lexicon$giftwrap_command) > 0){
       if(drop_base){
-          wrap_commands(lexicon$giftwrap_command, env=env, base_remove = unique(lexicon$base))
+          wrap_commands(lexicon$giftwrap_command, env=env, use_namespace=use_namespace, base_remove = unique(lexicon$base))
       } else {
-          wrap_commands(lexicon$giftwrap_command, env=env)
+          wrap_commands(lexicon$giftwrap_command, env=env, use_namespace=use_namespace)
       }
     }
 }
