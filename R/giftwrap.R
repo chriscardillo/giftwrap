@@ -81,6 +81,7 @@ wrap_commands <- function(..., env=parent.frame(), base_remove=NULL){
 }
 
 #' Load a functions from a lexicon into an environment
+#' @importFrom namespace getRegisteredNamespace makeNamespace
 #' @param lexicon a dataframe containing columns for base, command, subcommand, and giftwrap_command (the full command)
 #' @param commands regex filtering for any commands in the lexicon
 #' @param subcommands regex filtering for any subcommands in the lexicon
@@ -88,7 +89,7 @@ wrap_commands <- function(..., env=parent.frame(), base_remove=NULL){
 #' @param env the environment into which the giftwrap functions should be exported
 #' @return Functions exported to the specified environment
 #' @export
-wrap_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, env=parent.frame()){
+wrap_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, env=parent.frame(), create_namespace=NULL){
     check_lexicon(lexicon)
     if(!is.null(commands)){
         lexicon <- lexicon[grep(paste(commands, collapse = "|"), lexicon$command), ]
@@ -96,10 +97,17 @@ wrap_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, e
     if(!is.null(subcommands)){
         lexicon <- lexicon[grep(paste(subcommands, collapse = "|"), lexicon$subcommand), ]
     }
-    # boo hoo a for loop
-    if(drop_base){
-        wrap_commands(lexicon$giftwrap_command, env=env, base_remove = unique(lexicon$base))
-    } else {
-        wrap_commands(lexicon$giftwrap_command, env=env)
-    } 
+    if(!is.null(create_namespace)){
+      if(is.null(namespace::getRegisteredNamespace(create_namespace))){
+        namespace::makeNamespace(create_namespace)
+      }
+      env <- namespace::getRegisteredNamespace(create_namespace)
+    }
+    if(length(lexicon$giftwrap_command) > 0){
+      if(drop_base){
+          wrap_commands(lexicon$giftwrap_command, env=env, base_remove = unique(lexicon$base))
+      } else {
+          wrap_commands(lexicon$giftwrap_command, env=env)
+      }
+    }
 }

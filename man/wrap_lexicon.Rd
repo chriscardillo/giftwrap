@@ -9,7 +9,8 @@ wrap_lexicon(
   commands = NULL,
   subcommands = NULL,
   drop_base = F,
-  env = parent.frame()
+  env = parent.frame(),
+  create_namespace = NULL
 )
 }
 \arguments{
