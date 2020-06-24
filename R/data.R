@@ -27,3 +27,18 @@
 #' }
 #' @source made by scraping git help docs
 "lexicon_git"
+
+#' A giftwrap-formatted lexicon of all docker commands
+#'
+#' A dataset containing all base, commands, and subcommands from docker
+#'
+#' @format A dataset containing all base, commands, and subcommands from docker
+#' \describe{
+#'   \item{base}{the base, always docker}
+#'   \item{command}{the command/service, such as ps or image}
+#'   \item{subcommand}{the subcommand for the command/service, such as ls}
+#'   \item{giftwrap_command}{the base, command, and subcommand together}
+#'   ...
+#' }
+#' @source made by scraping docker help docs
+"lexicon_docker"
