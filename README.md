@@ -5,67 +5,72 @@
 <!-- badges: end -->
 
 ## Overview
-`giftwrap` is a lightweight package for wrapping shell commands in R, allowing R developers to interface with command line tools from services like AWS, Salesforce, Docker, git, and more. Here's how it works: 
 
-First, `wrap_commands` helps us wrap a shell command. Here we will wrap `echo`.
+`giftwrap` takes shell commands and turns them into R functions. This enables R developers to immediately work with command lines tools like AWS CLI, Salesforce DX, Docker, git, and more.
 
-```r
-wrap_commands("echo", env = globalenv())
-```
-
-giftwrap takes the shell command and turns it into an R function in your global environment. Now you can use the `echo` function to execute the shell command.
+If you have the AWS CLI [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) on your machine, you can install giftwrap and list your S3 buckets:
 
 ```r
-echo("hello world")
+devtools::install_github("chriscardillo/giftwrap")
+library(giftwrap)
+
+wrap_commands("aws s3 ls")
+aws_s3_ls()
 ```
+
+Or, if you have Docker [installed](https://docs.docker.com/get-docker/) on your machine, you can list your running containers.
+
+This time, we'll store our giftwrapped function in its own namespace that giftwrap creates. We'll call it `gifts`.
+
+```r
+wrap_commands("docker ps", use_namespace = "gifts")
+gifts::docker_ps()
+```
+
+And we can add our S3 function to that same namespace.
+```r
+wrap_commands("aws s3 ls", use_namespace = "gifts")
+gifts::aws_s3_ls()
+```
+
+`wrap_commands` can also handle multiple commands. The resulting giftwrapped functions can take any number of named or unnamed arguments, and will add those arguments to the command when the function is called. It only limited by the tools available in your shell. You can echo 'hello world', if you'd like.
+
+To enable a fast and standalone loading of commands, giftwrap employs the use of **lexicons**, such as `lexicon_aws` or `lexicon_docker`.
+
+The `wrap_lexicon` function takes a lexicon, accepts filtering for commands/subcommands, and has helpful options for where the resulting functions will live and what they will look like.
+
+Let's wrap the [git]("https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) lexicon.
+
+```r
+wrap_lexicon(lexicon_git,
+             use_namespace = "git",
+             commands = c("status", "reset"),
+             drop_base = T)
+git::status()
+git::reset("origin/master")
+```
+
+`commands` and `subcommands` arguments accept regex, and `drop_base` removes the base 'git' from the R function. There is also an `env` argument to specify an environment, instead of using `use_namespace`.
+
+-----
+
+## Other Useful Features
+
+#### Capture Output
 
 You can capture the status, stdout, and stderr from your call to the shell using variable assignment.
 
 ```r
+wrap_commands("echo")
 output <- echo("hello world")
 output$status
 output$stdout
 ```
 
-Below covers how to utilize giftwrap with some more popular command line tools.
-
------
-
-## Installing the Package
-
-giftwrap is not currently available on CRAN.
-
-```r
-devtools::install_github("chriscardillo/giftwrap")
-library(giftwrap)
-```
-
-## Loading a lexicon
-
-To help kickstart your deveopment, giftwrap contains **lexicons**. Lexicons are dataframes containing information about different command line tools. For instance the lexicon `lexicon_aws` contains over 7,000 commands available in the AWS CLI. 
-
-giftwrap's `load_lexicon` function is designed to help you create a subset of commands to wrap. Here is a code chunk that loads all of the AWS CLI's `s3` commands into a dediacated namespace called "aws":
-
-```r
-library(giftwrap)
-
-wrap_lexicon(lexicon_aws,
-             commands = "s3$",
-             use_namespace = "aws",
-             drop_base = T)
-```
-
-Now, you can use any of these AWS CLI commands in R using the following syntax:
-
-```r
-aws::s3_ls("your-s3-bucket-name-here")
-```
-
-`wrap_lexicon` accepts regex for `commands` and `subcommands`.
-
-**Please note that giftwrapped functions will only work if you have the corresponding command line tool installed on your machine.**
 
 ## Current lexicons
+
+#### Lexicons
 
 giftwrap currently comes with the following lexicons:
 
@@ -73,6 +78,8 @@ giftwrap currently comes with the following lexicons:
   - `lexicon_docker` - <a href="https://docs.docker.com/get-started/" target="_blank">Docker</a>
   - `lexicon_git` - <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">git</a>
   - `lexicon_sfdx_force` - <a href="https://developer.salesforce.com/blogs/2018/02/getting-started-salesforce-dx-part-3-5.html" target="_blank">Salesforce CLI (Developer Tools)</a>
+
+#### Making your own lexicon
 
 Using `lexicon_aws` as an example, each lexicon contain columns for:
 
@@ -84,6 +91,7 @@ Using `lexicon_aws` as an example, each lexicon contain columns for:
 If you follow the format of an existing lexicon, you will likely be able to use `wrap_lexicon` with any command line tool of your choosing.
 
 Note that all of the functionality in `wrap_lexicon` is identical to that of `wrap_commands`. `wrap_lexicon` just works with a dataframe, formatted as previously discussed. The hope is that `wrap_lexicon` will allow you to keep your command line commands organized, accessible, and reproducible.
+
 
 ## Adding giftwrap functions to packages
 
