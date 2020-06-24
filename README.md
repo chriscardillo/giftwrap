@@ -94,7 +94,7 @@ The following is a short code snippet you may place in `zzz.R` that allows you t
 .onLoad <- function(libname, pkgname) {
     ns_package <- rlang::env_parents()[[1]]
     giftwrap::wrap_lexicon(giftwrap::lexicon_aws,
-                           commands = c("s3$"),
+                           commands = "s3$",
                            env = ns_package,
                            drop_base = T)
 }
