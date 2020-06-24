@@ -100,6 +100,6 @@ wrap_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, e
     if(drop_base){
         wrap_commands(lexicon$giftwrap_command, env=env, base_remove = unique(lexicon$base))
     } else {
-        wrap_commands(giftwrap_command, env=env)
+        wrap_commands(lexicon$giftwrap_command, env=env)
     } 
 }
