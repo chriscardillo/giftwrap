@@ -40,46 +40,50 @@ devtools::install_github("chriscardillo/giftwrap")
 library(giftwrap)
 ```
 
-## Loading in functions from AWS
+## Loading a lexicon
 
-To help kickstart your deveopment, giftwrap comes with a lexicon for the AWS CLI. With over 7,000 functions, as long as you have the AWS CLI [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) on your local machine, you'll be able to immediately copy things to S3, translate text into different languages, stand up EC2 instances, and any anything else you can do from the AWS command line.
+To help kickstart your deveopment, giftwrap contains **lexicons**. Lexicons are dataframes containing information about different command line tools. For instance the lexicon `lexicon_aws` contains over 7,000 commands available in the AWS CLI. 
 
-For filtering down to a subset of desired commands, you have two options:
-
-1) Simply use your favorite data manipulation tool (most likely `dplyr`) to filter for the AWS CLI commands you wish to load, and pass the filtered lexicon to `wrap_lexicon`.
-
-2) `wrap_lexicon` has `commands` and `subcommands` arguments that accept regex, so you can filter for commands and subcommands directly in your call to `wrap_lexicon`.
-
-Let's take advantage of the `commands` and `subcommands` arguments to filter for just a handful of AWS EC2 and S3 commands. Also note we are specifying a global environment, and we will drop the base ('aws') from the R functions generated using `drop_base = T`.
+giftwrap's `load_lexicon` function is designed to help you create a subset of commands to wrap. Here is a code chunk that loads all of the AWS CLI's `s3` commands into a dediacated namespace called "aws":
 
 ```r
 library(giftwrap)
 
 wrap_lexicon(lexicon_aws,
-             commands = "s3$|ec2$",
-             subcommands = "^ls$|^cp$|^describe-instances$",
-             env = globalenv(),
+             commands = "s3$",
+             use_namespace = "aws",
              drop_base = T)
 ```
 
-You should now have a few AWS functions, like `s3_ls` in your global R environment. You can run the command `s3_ls()` to list your s3 buckets. Otherwise, you can now just pass in your arguments and use the AWS CLI from R.
-
-## Making your own lexicon
-
-Here is a quick example of creating a small lexicon for [docker](http://docker.io/), which we assume you have [installed](https://docs.docker.com/get-docker/).
+Now, you can use any of these AWS CLI commands in R using the following syntax:
 
 ```r
-library(giftwrap)
-library(dplyr)
-
-tibble(base = "docker",
-       command = "image",
-       subcommand = c("ls", "build"),
-       giftwrap_command = paste(base, command, subcommand)) %>%
-  wrap_lexicon(env = globalenv())
+aws::s3_ls("your-s3-bucket-name-here")
 ```
 
-Now you have a few docker commands in your R global environment!
+`wrap_lexicon` accepts regex for `commands` and `subcommands`.
+
+**Please note that giftwrapped functions will only work if you have the corresponding command line tool installed on your machine.**
+
+## Current lexicons
+
+giftwrap currently comes with the following lexicons:
+
+    - `lexicon_aws` - <a target="_blank" href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html">Amazon Web Services Command Line Interface</a>
+    - `lexicon_docker` - <a target="_blank" href="https://docs.docker.com/get-started/">Docker</a>
+    - `lexicon_git` - <a target="_blank" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">git</a>
+    - `lexicon_sfdx_force` - <a target="_blank" href="https://developer.salesforce.com/blogs/2018/02/getting-started-salesforce-dx-part-3-5.html">Salesforce CLI (Developer Tools)</a>
+
+Using `lexicon_aws` as an example, each lexicon contain columns for:
+
+    - **base:**  the base command, which is always the same (in this case, 'aws')
+    - **command:** the command after base (in this case, a service like 's3')
+    - **subcommand:** the subcommand associated with the command (in this case, an s3 action like 'ls' or 'cp')
+    - **giftwrap_command:** the full command to be called by the giftwrap function
+
+If you follow the format of an existing lexicon, you will likely be able to use `wrap_lexicon` with any command line tool of your choosing.
+
+Note that all of the functionality in `wrap_lexicon` is identical to that of `wrap_commands`. `wrap_lexicon` just works with a dataframe, formatted as previously discussed. The hope is that `wrap_lexicon` will allow you to keep your command line commands organized, accessible, and reproducible.
 
 ## Adding giftwrap functions to packages
 
@@ -95,34 +99,11 @@ The following is a short code snippet you may place in `zzz.R` that allows you t
     ns_package <- rlang::env_parents()[[1]]
     giftwrap::wrap_lexicon(giftwrap::lexicon_aws,
                            commands = "s3$",
+                           subcommands = "^ls$|^cp$|^describe-instances$",
                            env = ns_package,
                            drop_base = T)
 }
 ```
-
-## Useful Environment Tip: Session Namespaces
-
-It can be annoying to have too many functions floating around your global environment, but fortunately you can utilize giftwrap alongside the `namespace` package to confine your giftwrapped functions to a local namespace within your R session.
-
-Here is a small code snippet using the `namespace` package (available on CRAN) and giftwrap to build on our previous example, but now our giftwrapped functions are accessed from within a local namespace called "docker".
-
-```r
-library(giftwrap)
-library(dplyr)
-library(namespace)
-
-makeNamespace("docker")
-
-tibble(base = "docker",
-       command = "image",
-       subcommand = c("ls", "build"),
-       giftwrap_command = paste(base, command, subcommand)) %>%
-  wrap_lexicon(env = getRegisteredNamespace("docker"),
-               drop_base = T)
-
-docker::image_ls()
-```
-
 -----
 
 Happy giftwrapping!
