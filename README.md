@@ -1,5 +1,5 @@
 <!-- badges: start -->
-[![R build status](https://github.com/chriscardillo/giftwrap/workflows/R-CMD-check/badge.svg)](https://github.com/chriscardillo/giftwrap/actions)
+![R-CMD-check](https://github.com/chriscardillo/giftwrap/workflows/R-CMD-check/badge.svg)
 <!-- badges: end -->
 
 # giftwrap
