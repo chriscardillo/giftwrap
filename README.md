@@ -69,22 +69,16 @@ aws::s3_ls("your-s3-bucket-name-here")
 
 giftwrap currently comes with the following lexicons:
 
-  - `lexicon_aws` - <a target="_blank" href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html">Amazon Web Services Command Line Interface</a>
-  
-  - `lexicon_docker` - <a target="_blank" href="https://docs.docker.com/get-started/">Docker</a>
-  
-  - `lexicon_git` - <a target="_blank" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">git</a>
-  
-  - `lexicon_sfdx_force` - <a target="_blank" href="https://developer.salesforce.com/blogs/2018/02/getting-started-salesforce-dx-part-3-5.html">Salesforce CLI (Developer Tools)</a>
+  - `lexicon_aws` - <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html" target="_blank">Amazon Web Services Command Line Interface</a>
+  - `lexicon_docker` - <a href="https://docs.docker.com/get-started/" target="_blank">Docker</a>
+  - `lexicon_git` - <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">git</a>
+  - `lexicon_sfdx_force` - <a href="https://developer.salesforce.com/blogs/2018/02/getting-started-salesforce-dx-part-3-5.html" target="_blank">Salesforce CLI (Developer Tools)</a>
 
 Using `lexicon_aws` as an example, each lexicon contain columns for:
 
   - **base:**  the base command, which is always the same (in this case, 'aws')
-  
   - **command:** the command after base (in this case, a service like 's3')
-  
   - **subcommand:** the subcommand associated with the command (in this case, an s3 action like 'ls' or 'cp')
-  
   - **giftwrap_command:** the full command to be called by the giftwrap function
 
 If you follow the format of an existing lexicon, you will likely be able to use `wrap_lexicon` with any command line tool of your choosing.
