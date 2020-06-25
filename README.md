@@ -40,7 +40,7 @@ To enable a fast and standalone loading of commands, giftwrap employs the use of
 
 The `wrap_lexicon` function takes a lexicon, accepts filtering for commands/subcommands, and has helpful options for where the resulting functions will live and what they will look like.
 
-Let's wrap the [git]("https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) lexicon.
+Let's wrap the [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) lexicon.
 
 ```r
 wrap_lexicon(lexicon_git,
