@@ -126,7 +126,7 @@ Alternatively, if you only want your giftwrapped functions to be available to yo
 }
 ```
 
-Now your package can access a command like `aws s3 ls` with the syntax `r aws$s3_ls()`, and you are free to develop on top of the giftwrapped function as you like.
+Now your package can access a command like `aws s3 ls` with the syntax `aws$s3_ls()`, and you are free to develop on top of the giftwrapped function as you like.
 
 -----
 
