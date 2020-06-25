@@ -86,7 +86,7 @@ Using `lexicon_aws` as an example, each lexicon contain columns for:
   - **base:**  the base command, which is always the same (in this case, 'aws')
   - **command:** the command after base (in this case, a service like 's3')
   - **subcommand:** the subcommand associated with the command (in this case, an s3 action like 'ls' or 'cp')
-  - **giftwrap_command:** the full command to be called by the giftwrap function
+  - **giftwrap_command:** the full command to be called by the giftwrapped function
 
 If you follow the format of an existing lexicon, you will likely be able to use `wrap_lexicon` with any command line tool of your choosing.
 
