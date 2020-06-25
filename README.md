@@ -74,11 +74,11 @@ output$stdout
 
 giftwrap currently comes with the following lexicons:
 
-  - `lexicon_aws` - [Amazon Web Services Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
-  - `lexicon_docker` - [Docker](https://docs.docker.com/get-started/)
+  - `lexicon_aws` - [Amazon Web Services Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
+  - `lexicon_docker` - [Docker](https://docs.docker.com/get-started/#download-and-install-docker-desktop)
   - `lexicon_git` - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
   - `lexicon_heroku` - [Heroku](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
-  - `lexicon_sfdx_force` - [Salesforce DX](https://developer.salesforce.com/blogs/2018/02/getting-started-salesforce-dx-part-3-5.html)
+  - `lexicon_sfdx_force` - [Salesforce DX](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm)
 
 #### Making your own lexicon
 
