@@ -34,7 +34,7 @@ wrap_commands(c("aws s3 ls", "docker ps"), use_namespace = "gifts")
 gifts::aws_s3_ls()
 ```
 
-The resulting giftwrapped functions can take any number of named or unnamed arguments, and will add those arguments to the command when the function is called. You can wrap any command available in your shell. You can echo 'hello world', if you'd like.
+The resulting giftwrapped functions can take any number of named or unnamed arguments, and will add those arguments to the command when the function is called. **You can wrap any command available in your shell.**
 
 To enable a fast and standalone loading of commands, giftwrap employs the use of **lexicons**, such as `lexicon_aws` or `lexicon_docker`.
 
