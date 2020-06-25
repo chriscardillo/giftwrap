@@ -5,7 +5,7 @@
 \alias{lexicon_az}
 \title{A giftwrap-formatted lexicon of the majority of Microsoft Azure commands}
 \format{
-A dataset containing all base, commands, and subcommands from azure (az)
+A dataset containing all base, commands, and subcommands from Microsoft Azure (az)
 \describe{
 \item{base}{the base, always az}
 \item{command}{the command/service, such as sql}

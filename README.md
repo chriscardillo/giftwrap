@@ -77,6 +77,7 @@ giftwrap currently comes with the following lexicons:
   - `lexicon_aws` - [Amazon Web Services Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
   - `lexicon_az` - [Azure](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-macos?view=azure-cli-latest)
   - `lexicon_docker` - [Docker](https://docs.docker.com/get-started/#download-and-install-docker-desktop)
+  - `lexicon_gh` - [GitHub](https://cli.github.com/manual/installation)
   - `lexicon_git` - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
   - `lexicon_heroku` - [Heroku](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
   - `lexicon_sfdx_force` - [Salesforce DX](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm)

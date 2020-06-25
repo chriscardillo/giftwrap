@@ -87,3 +87,18 @@
 #' }
 #' @source made by scraping Microsoft Azure command line help docs
 "lexicon_az"
+
+#' A giftwrap-formatted lexicon of all github CLI commands
+#'
+#' A dataset containing all base, commands, and subcommands from github CLI (gh)
+#'
+#' @format A dataset containing all base, commands, and subcommands from github CLI (gh)
+#' \describe{
+#'   \item{base}{the base, always gh}
+#'   \item{command}{the command/service, such as pipelines}
+#'   \item{subcommand}{the subcommand for the command/service, such as add}
+#'   \item{giftwrap_command}{the base, command, and subcommand together}
+#'   ...
+#' }
+#' @source made by scraping heroku help docs
+"lexicon_gh"
