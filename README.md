@@ -96,19 +96,37 @@ Note that all of the functionality in `wrap_lexicon` is identical to that of `wr
 
 If you are familiar with creating R packages, you may know you can specify actions to be taken when the package is loaded using the `.onLoad` function, in a file typically called `zzz.R` in the R folder of your package directory.
 
-The following is a short code snippet you may place in `zzz.R` that allows you to load in giftwrapped functions from the aws lexicon.
+The following is a short code snippet you may place in `zzz.R` that allows you to load in giftwrapped functions from the aws lexicon into your package, accessible for your package users.
 
 ```r
 #' Generates functions on load
 #' @importFrom giftwrap wrap_lexicon
 .onLoad <- function(libname, pkgname) {
     giftwrap::wrap_lexicon(giftwrap::lexicon_aws,
-                           commands = c("s3$"),
+                           commands = "s3$|ec2$",
                            subcommands = "^ls$|^cp$|^describe-instances$",
                            use_namespace = "yourpackagenamehere",
                            drop_base = T)
 }
 ```
+
+Alternatively, if you only want your giftwrapped functions to be available to your package and not directly to the user, you can leverage environment caching instead.
+
+```r
+#' Generates functions on load
+#' @importFrom giftwrap wrap_lexicon
+.onLoad <- function(libname, pkgname) {
+    aws <- new.env()
+    giftwrap::wrap_lexicon(giftwrap::lexicon_aws,
+                           commands = "s3$|ec2$",
+                           subcommands = "^ls$|^cp$|^describe-instances$",
+                           env = aws,
+                           drop_base = T)
+    assign("aws", aws, pos = parent.env(environment()))
+}
+```
+
+Now your package can access a command like `aws s3 ls` with the syntax `r aws$s3_ls()`, and you are free to develop on top of the giftwrapped function as you like.
 
 -----
 
