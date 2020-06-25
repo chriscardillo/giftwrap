@@ -20,20 +20,21 @@ aws_s3_ls()
 
 Or, if you have Docker [installed](https://docs.docker.com/get-docker/) on your machine, you can list your running containers.
 
-This time, we'll store our giftwrapped function in its own namespace that giftwrap creates. We'll call it `gifts`.
+This time, we'll store our giftwrapped function in its own namespace that giftwrap creates. We'll call the namespace `gifts`.
 
 ```r
 wrap_commands("docker ps", use_namespace = "gifts")
 gifts::docker_ps()
 ```
 
-And we can add our S3 function to that same namespace.
+And we can add our S3 function to that same namespace. Notice how `wrap commands` can handle multiple commands.
+
 ```r
-wrap_commands("aws s3 ls", use_namespace = "gifts")
+wrap_commands(c("aws s3 ls", "docker ps"), use_namespace = "gifts")
 gifts::aws_s3_ls()
 ```
 
-`wrap_commands` can also handle multiple commands. The resulting giftwrapped functions can take any number of named or unnamed arguments, and will add those arguments to the command when the function is called. It only limited by the tools available in your shell. You can echo 'hello world', if you'd like.
+The resulting giftwrapped functions can take any number of named or unnamed arguments, and will add those arguments to the command when the function is called. You can wrap any command available in your shell. You can echo 'hello world', if you'd like.
 
 To enable a fast and standalone loading of commands, giftwrap employs the use of **lexicons**, such as `lexicon_aws` or `lexicon_docker`.
 
