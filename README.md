@@ -74,7 +74,7 @@ output$stdout
 
 giftwrap currently comes with the following lexicons:
 
-  - `lexicon_aws` - [Amazon Web Services Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
+  - `lexicon_aws` - [Amazon Web Services](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
   - `lexicon_az` - [Azure](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-macos?view=azure-cli-latest)
   - `lexicon_docker` - [Docker](https://docs.docker.com/get-started/#download-and-install-docker-desktop)
   - `lexicon_gh` - [GitHub](https://cli.github.com/manual/installation)
