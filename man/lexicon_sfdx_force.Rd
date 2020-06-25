@@ -15,7 +15,7 @@ A dataset containing all base, commands, and subcommands from Salesforce develop
 }
 }
 \source{
-made by scraping docker help docs
+made by scraping sfdx help docs
 }
 \usage{
 lexicon_sfdx_force

@@ -15,7 +15,7 @@ A dataset containing all base, commands, and subcommands from github CLI (gh)
 }
 }
 \source{
-made by scraping heroku help docs
+made by scraping github cli help docs
 }
 \usage{
 lexicon_gh

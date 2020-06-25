@@ -80,6 +80,7 @@ giftwrap currently comes with the following lexicons:
   - `lexicon_gh` - [GitHub](https://cli.github.com/manual/installation)
   - `lexicon_git` - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
   - `lexicon_heroku` - [Heroku](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+  - `lexicon_kubectl` - [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-macos)
   - `lexicon_sfdx_force` - [Salesforce DX](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm)
 
 #### Making your own lexicon

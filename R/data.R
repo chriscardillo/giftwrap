@@ -55,7 +55,7 @@
 #'   \item{giftwrap_command}{the base, command, and subcommand together, specially formatted for sfdx}
 #'   ...
 #' }
-#' @source made by scraping docker help docs
+#' @source made by scraping sfdx help docs
 "lexicon_sfdx_force"
 
 #' A giftwrap-formatted lexicon of all heroku commands
@@ -100,5 +100,20 @@
 #'   \item{giftwrap_command}{the base, command, and subcommand together}
 #'   ...
 #' }
-#' @source made by scraping heroku help docs
+#' @source made by scraping github cli help docs
 "lexicon_gh"
+
+#' A giftwrap-formatted lexicon of all Kubernetes kubectl commands
+#'
+#' A dataset containing all base, commands, and subcommands from kubectl
+#'
+#' @format A dataset containing all base, commands, and subcommands from kubectl
+#' \describe{
+#'   \item{base}{the base, always kubectl}
+#'   \item{command}{the command/service, such as ps or image}
+#'   \item{subcommand}{the subcommand for the command/service, such as ls}
+#'   \item{giftwrap_command}{the base, command, and subcommand together}
+#'   ...
+#' }
+#' @source made by scraping kubectl help docs
+"lexicon_kubectl"
