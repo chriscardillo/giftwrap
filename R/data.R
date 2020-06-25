@@ -57,3 +57,18 @@
 #' }
 #' @source made by scraping docker help docs
 "lexicon_sfdx_force"
+
+#' A giftwrap-formatted lexicon of all heroku commands
+#'
+#' A dataset containing all base, commands, and subcommands from heroku
+#'
+#' @format A dataset containing all base, commands, and subcommands from heroku
+#' \describe{
+#'   \item{base}{the base, always heroku}
+#'   \item{command}{the command/service, such as pipelines}
+#'   \item{subcommand}{the subcommand for the command/service, such as add}
+#'   \item{giftwrap_command}{the base, command, and subcommand together}
+#'   ...
+#' }
+#' @source made by scraping heroku help docs
+"lexicon_heroku"
