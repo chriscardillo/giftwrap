@@ -72,3 +72,18 @@
 #' }
 #' @source made by scraping heroku help docs
 "lexicon_heroku"
+
+#' A giftwrap-formatted lexicon of the majority of Microsoft Azure commands
+#'
+#' A dataset containing all base, commands, and subcommands from Microsoft Azure (az)
+#'
+#' @format A dataset containing all base, commands, and subcommands from Microsoft Azure (az)
+#' \describe{
+#'   \item{base}{the base, always az}
+#'   \item{command}{the command/service, such as sql}
+#'   \item{subcommand}{the subcommand for the command/service, such as create}
+#'   \item{giftwrap_command}{the base, command, and subcommand together}
+#'   ...
+#' }
+#' @source made by scraping Microsoft Azure command line help docs
+"lexicon_az"
