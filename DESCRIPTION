@@ -18,4 +18,5 @@ Imports:
     processx,
     utils
 Suggests: 
-    testthat
+    testthat,
+    covr

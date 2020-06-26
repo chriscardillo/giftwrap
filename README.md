@@ -3,6 +3,7 @@
 <!-- badges: start -->
 ![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
 ![R-CMD-check](https://github.com/chriscardillo/giftwrap/workflows/R-CMD-check/badge.svg)
+![coverage](https://codecov.io/gh/chriscardillo/giftwrap/branch/master/graph/badge.svg)
 <!-- badges: end -->
 
 ## Overview
