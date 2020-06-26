@@ -9,6 +9,7 @@ format_arg <- function(x){
     name <- NULL
     arg <- suppressWarnings({if(nchar(x[[1]])>0){x[[1]]}else{NULL}})
     if(!is.null(names(x)) && names(x) != ""){
+        names(x) <- gsub("_", "-", names(x))
         name <- ifelse(nchar(names(x)) == 1, sprintf("-%s", names(x)), sprintf("--%s", names(x)))
     }
     c(name, arg)
@@ -38,13 +39,17 @@ format_args <- function(...){
 #' @param command a shell command
 #' @param ... named and unnamed arguments to be giftwrapped
 #' @return messages from the running command, errors if failure
-giftwrap <- function(command, ...){
+giftwrap <- function(command, ..., process_echo = T){
     full_command <- unlist(strsplit(trimws(command), " "))
     base_command <- full_command[1]
     subcommands <- full_command[!full_command %in% base_command]
     args <- format_args(...)
     px_run_args <- c(subcommands, args)
-    invisible(processx::run(command = base_command, args = px_run_args, echo_cmd = T, echo = T))
+    if(process_echo){
+      invisible(processx::run(command = base_command, args = px_run_args, echo_cmd = T, echo = T))
+    } else {
+      invisible(processx::run(command = base_command, args = px_run_args))
+    }
 }
 
 #' To convert shell commands into giftwrapped functions
