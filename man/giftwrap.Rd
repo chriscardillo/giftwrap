@@ -4,12 +4,14 @@
 \alias{giftwrap}
 \title{The caller function that will live inside of factory function}
 \usage{
-giftwrap(command, ...)
+giftwrap(command, ..., process_echo = T)
 }
 \arguments{
 \item{command}{a shell command}
 
 \item{...}{named and unnamed arguments to be giftwrapped}
+
+\item{process_echo}{set to FALSE to surpress terminal messages when command is run}
 }
 \value{
 messages from the running command, errors if failure

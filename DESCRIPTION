@@ -17,3 +17,5 @@ Imports:
     namespace,
     processx,
     utils
+Suggests: 
+    testthat

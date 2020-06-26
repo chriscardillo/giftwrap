@@ -23,16 +23,6 @@ check_null <- function(...){
 
 #' Ensure specificity for certain functions
 #' 
-#' @param v named items to check
-#' @param name name of the argument being checked
-#' @return error if list is not named
-check_specific <- function(v, name = NULL){
-    if(length(v) > 1){stop(paste("argument", name, "should be of length 1. Found many."))}
-    if(length(v) < 1){stop(paste("argument", name, "should be of length 1. Found none."))}
-}
-
-#' Ensure specificity for certain functions
-#' 
 #' @param lexicon a lexicon to be evaluated
 #' @return error if lexicon is not properly formatted
 check_lexicon <- function(lexicon){

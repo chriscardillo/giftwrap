@@ -37,6 +37,7 @@ format_args <- function(...){
 #'
 #' @importFrom processx run
 #' @param command a shell command
+#' @param process_echo set to FALSE to surpress terminal messages when command is run
 #' @param ... named and unnamed arguments to be giftwrapped
 #' @return messages from the running command, errors if failure
 giftwrap <- function(command, ..., process_echo = T){
