@@ -117,3 +117,18 @@
 #' }
 #' @source made by scraping kubectl help docs
 "lexicon_kubectl"
+
+#' A giftwrap-formatted lexicon of all Google Cloud Platform gcloud commands
+#'
+#' A dataset containing all base, commands, and subcommands from gcloud
+#'
+#' @format A dataset containing all base, commands, and subcommands from gcloud
+#' \describe{
+#'   \item{base}{the base, always gcloud}
+#'   \item{command}{the command/service, such as compute}
+#'   \item{subcommand}{the subcommand for the command/service, such as ssh}
+#'   \item{giftwrap_command}{the base, command, and subcommand together}
+#'   ...
+#' }
+#' @source made by scraping gcloud help docs
+"lexicon_gcloud"

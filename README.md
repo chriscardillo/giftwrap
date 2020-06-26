@@ -78,6 +78,8 @@ giftwrap currently comes with the following lexicons:
   - `lexicon_aws` - [Amazon Web Services](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
   - `lexicon_az` - [Azure](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-macos?view=azure-cli-latest)
   - `lexicon_docker` - [Docker](https://docs.docker.com/get-started/#download-and-install-docker-desktop)
+  - `lexicon_gcloud` - [Google Cloud Platform](https://cloud.google.com/sdk/docs/quickstart-macos)
+      - `gcloud` requires a little extra work to get working with RStudio, see [below](#gcloud-in-rstudio).
   - `lexicon_gh` - [GitHub](https://cli.github.com/manual/installation)
   - `lexicon_git` - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
   - `lexicon_heroku` - [Heroku](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
@@ -132,6 +134,16 @@ Alternatively, if you only want your giftwrapped functions to be available to yo
 ```
 
 Now your package can access a command like `aws s3 ls` with the syntax `aws$s3_ls()`, and you are free to develop on top of the giftwrapped function as you like.
+
+#### gcloud in RStudio
+
+After you have [installed gcloud](https://cloud.google.com/sdk/docs/quickstart-macos) (and make sure to run `install.sh` when you do), follow these steps to ensure gcloud will work in RStudio on your local machine:
+
+  1) In your terminal, run `which gcloud`
+  2) From the result, something like `/usr/local/google-cloud-sdk/bin/gcloud`, copy up to `bin`. In this example, we'd take `/usr/local/google-cloud-sdk/bin`
+  3) In RStudio, run `usethis::edit_r_environ()`
+  4) In the .Renviron file that opens, add gcloud to your `PATH`. Using our example, the line should read something like `PATH=/usr/local/google-cloud-sdk/bin:$PATH`
+  5) Save your .Renviron file and restart R
 
 -----
 
