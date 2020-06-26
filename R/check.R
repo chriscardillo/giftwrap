@@ -44,3 +44,16 @@ check_lexicon <- function(lexicon){
         stop("Please pass a lexicon with unique rows only.")
     }
 }
+
+#' Checks lexicon name passed to \code{lexcion}
+#' @param lexicon_name the lexicon name passed to \code{lexcion}
+#' @return error and message if lexicon not in available lexicons
+check_lexicon_name <- function(lexicon_name){
+  available_lexicons <- c("aws", "az", "docker",
+                          "gcloud", "gh", "git",
+                          "heroku", "kubectl", "sfdx")
+  if(!lexicon_name %in% available_lexicons){
+    stop(paste("Please pick an available lexicon: ", paste(available_lexicons, collapse = ", ")))
+  }
+  
+}

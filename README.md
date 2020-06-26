@@ -37,14 +37,14 @@ gifts::aws_s3_ls()
 
 The resulting giftwrapped functions can take any number of named or unnamed arguments, and will add those arguments to the command when the function is called. **You can wrap any command available in your shell.**
 
-To enable a fast and standalone loading of commands, giftwrap employs the use of **lexicons**, such as `lexicon_aws` or `lexicon_docker`.
+To enable a fast and standalone loading of commands, giftwrap employs the use of **lexicons**, and comes with several lexicons, which are accessed using the `lexicon` function, like `lexicon("aws")` or `lexicon("docker")`.
 
 The `wrap_lexicon` function takes a lexicon, accepts filtering for commands/subcommands, and has helpful options for where the resulting functions will live and what they will look like.
 
 Let's wrap the [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) lexicon.
 
 ```r
-wrap_lexicon(lexicon_git,
+wrap_lexicon(lexicon("git"),
              use_namespace = "git",
              commands = c("status", "reset"),
              drop_base = T)
@@ -75,20 +75,20 @@ output$stdout
 
 giftwrap currently comes with the following lexicons:
 
-  - `lexicon_aws` - [Amazon Web Services](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
-  - `lexicon_az` - [Azure](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-macos?view=azure-cli-latest)
-  - `lexicon_docker` - [Docker](https://docs.docker.com/get-started/#download-and-install-docker-desktop)
-  - `lexicon_gcloud` - [Google Cloud Platform](https://cloud.google.com/sdk/docs/quickstart-macos)
+  - `aws` - [Amazon Web Services](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
+  - `az` - [Azure](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-macos?view=azure-cli-latest)
+  - `docker` - [Docker](https://docs.docker.com/get-started/#download-and-install-docker-desktop)
+  - `gcloud` - [Google Cloud Platform](https://cloud.google.com/sdk/docs/quickstart-macos)
       - `gcloud` requires a little extra work to get working with RStudio, see [below](#gcloud-in-rstudio).
-  - `lexicon_gh` - [GitHub](https://cli.github.com/manual/installation)
-  - `lexicon_git` - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-  - `lexicon_heroku` - [Heroku](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
-  - `lexicon_kubectl` - [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-macos)
-  - `lexicon_sfdx_force` - [Salesforce DX](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm)
+  - `gh` - [GitHub](https://cli.github.com/manual/installation)
+  - `git` - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+  - `heroku` - [Heroku](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+  - `kubectl` - [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-macos)
+  - `sfdx` - [Salesforce DX](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm)
 
 #### Making your own lexicon
 
-Using `lexicon_aws` as an example, each lexicon contain columns for:
+Using the `aws` lexicon as an example, each lexicon contain columns for:
 
   - **base:**  the base command, which is always the same (in this case, 'aws')
   - **command:** the command after base (in this case, a service like 's3')
@@ -107,9 +107,9 @@ The following is a short code snippet you may place in `zzz.R` that allows you t
 
 ```r
 #' Generates functions on load
-#' @importFrom giftwrap wrap_lexicon
+#' @importFrom giftwrap wrap_lexicon lexicon
 .onLoad <- function(libname, pkgname) {
-    giftwrap::wrap_lexicon(giftwrap::lexicon_aws,
+    giftwrap::wrap_lexicon(giftwrap::lexicon("aws"),
                            commands = "s3$|ec2$",
                            subcommands = "^ls$|^cp$|^describe-instances$",
                            use_namespace = "yourpackagenamehere",
@@ -121,10 +121,10 @@ Alternatively, if you only want your giftwrapped functions to be available to yo
 
 ```r
 #' Generates functions on load
-#' @importFrom giftwrap wrap_lexicon
+#' @importFrom giftwrap wrap_lexicon lexicon
 .onLoad <- function(libname, pkgname) {
     aws <- new.env()
-    giftwrap::wrap_lexicon(giftwrap::lexicon_aws,
+    giftwrap::wrap_lexicon(giftwrap::lexicon("aws"),
                            commands = "s3$|ec2$",
                            subcommands = "^ls$|^cp$|^describe-instances$",
                            env = aws,
