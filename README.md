@@ -9,7 +9,7 @@
 
 `giftwrap` takes shell commands and turns them into R functions. This enables R developers to immediately work with command lines tools like AWS CLI, Salesforce DX, Docker, git, and more.
 
-###### `wrap_commands`
+##### `wrap_commands`
 
 If you have the AWS CLI [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) on your machine, you can install giftwrap and list your S3 buckets:
 
@@ -39,7 +39,7 @@ gifts::aws_s3_ls()
 
 The resulting giftwrapped functions can take any number of named or unnamed arguments, and will add those arguments to the command when the function is called. **You can wrap any command available in your shell.**
 
-###### `wrap_lexicon`
+##### `wrap_lexicon`
 
 To enable a fast and standalone loading of commands, giftwrap employs the use of **lexicons**, and comes with several lexicons, which are accessed using the `lexicon` function, like `lexicon("aws")` or `lexicon("docker")`.
 
