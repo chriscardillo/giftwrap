@@ -1,4 +1,4 @@
-context("wrapping of commands")
+context("wrap_commands and wrap_lexicon generate commands")
 
 wrap_commands("echo")
 wrap_commands("echo", use_namespace = "gifts")

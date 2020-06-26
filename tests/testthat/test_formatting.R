@@ -1,4 +1,4 @@
-context("formatting of giftwrapped function args")
+context("format_arg and format_args correctly format shell arguments")
 
 test_that("format_arg conversions work", {
   expect_equal(format_arg(list("hey")), "hey")

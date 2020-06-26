@@ -1,4 +1,4 @@
-context("running of giftwrapped commands")
+context("giftwrap runs commands")
 
 test_that("giftwrap captures output", {
   expect_equal(length(giftwrap("echo hey", process_echo = F)), 4)

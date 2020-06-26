@@ -1,4 +1,4 @@
-context("function checks work")
+context("checks throw errors")
 
 bad_lexicon <- data.frame(bad_col = "terrible")
 dupe_lexicon <- data.frame(base = "aws",

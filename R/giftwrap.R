@@ -67,6 +67,9 @@ wrap_commands <- function(..., env=parent.frame(), base_remove=NULL, use_namespa
         stop("Please pass an environment to the env arugment.")
     }
     functions <- list(...)
+    if(length(functions) > 1 && any(lapply(functions, length) > 1)){
+      stop("Please do not pass arguments of varying length\n  Use a vector, a list, or arguments separated with a comma.")
+    }
     if(length(functions) == 1 && (length(functions[[1]]) > 1)){
         functions <- as.list(functions[[1]])
     }

@@ -1,4 +1,4 @@
-context("lexicon command functionality")
+context("lexicon fetches lexicons")
 
 test_that("unknown lexicons fail", {
   expect_error(lexicon("thisdoesnotexist"))
