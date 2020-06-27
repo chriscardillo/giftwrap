@@ -39,7 +39,7 @@ check_lexicon <- function(lexicon){
 #' @param lexicon_name the lexicon name passed to \code{lexcion}
 #' @return error and message if lexicon not in available lexicons
 check_lexicon_name <- function(lexicon_name){
-  available_lexicons <- c("aws", "az", "docker",
+  available_lexicons <- c("aws", "az", "brew", "docker",
                           "gcloud", "gh", "git",
                           "heroku", "kubectl", "sfdx")
   if(!lexicon_name %in% available_lexicons){

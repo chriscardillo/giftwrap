@@ -80,6 +80,7 @@ giftwrap currently comes with the following lexicons:
 
   - `aws` - [Amazon Web Services](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
   - `az` - [Azure](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-macos?view=azure-cli-latest)
+  - `brew` - [Homebrew](https://brew.sh/)
   - `docker` - [Docker](https://docs.docker.com/get-started/#download-and-install-docker-desktop)
   - `gcloud` - [Google Cloud Platform](https://cloud.google.com/sdk/docs/quickstart-macos)
       - `gcloud` requires a little extra work to get working with RStudio, see [below](#gcloud-in-rstudio).

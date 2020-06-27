@@ -7,6 +7,7 @@ test_that("unknown lexicons fail", {
 test_that("lexicons exist", {
   expect_true(class(lexicon("aws")) == "data.frame") 
   expect_true(class(lexicon("az")) == "data.frame")
+  expect_true(class(lexicon("brew")) == "data.frame")
   expect_true(class(lexicon("docker")) == "data.frame") 
   expect_true(class(lexicon("gcloud")) == "data.frame") 
   expect_true(class(lexicon("gh")) == "data.frame")
