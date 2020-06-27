@@ -1,6 +1,8 @@
 # giftwrap
 
 <!-- badges: start -->
+![CRAN status](https://www.r-pkg.org/badges/version/giftwrap)
+
 ![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)
 ![R-CMD-check](https://github.com/chriscardillo/giftwrap/workflows/R-CMD-check/badge.svg)
 ![coverage](https://codecov.io/gh/chriscardillo/giftwrap/branch/master/graph/badge.svg)

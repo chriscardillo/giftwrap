@@ -1,5 +1,5 @@
 Package: giftwrap
-Title: For wrapping command line packages into R functions
+Title: Take Shell Commands and Turn Them into R Functions
 Version: 0.0.3
 Authors@R: 
     person(given = "Chris",
