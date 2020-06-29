@@ -2,10 +2,14 @@ Package: giftwrap
 Title: Take Shell Commands and Turn Them into R Functions
 Version: 0.0.4
 Authors@R: 
-    person(given = "Chris",
-           family = "Cardillo",
-           role = c("aut", "cre"),
-           email = "cfcardillo23@gmail.com")
+    c(person(given = "Chris",
+             family = "Cardillo",
+             role = c("aut", "cre"),
+             email = "cfcardillo23@gmail.com"),
+      person(given = "David",
+             family = "Robinson",
+             role = "ctb",
+             email = "admiral.david@gmail.com"))
 Description: Wrapping command line functions into R functions, which in turn run the command line functions.
 License: MIT + file LICENSE
 Encoding: UTF-8
