@@ -46,11 +46,9 @@ giftwrap <- function(command, ..., process_echo = T){
     subcommands <- full_command[!full_command %in% base_command]
     args <- format_args(...)
     px_run_args <- c(subcommands, args)
-    if(process_echo){
-      invisible(processx::run(command = base_command, args = px_run_args, echo_cmd = T, echo = T))
-    } else {
-      invisible(processx::run(command = base_command, args = px_run_args))
-    }
+    invisible(processx::run(command = base_command, args = px_run_args,
+                            echo_cmd = process_echo,
+                            echo = process_echo))
 }
 
 #' To convert shell commands into giftwrapped functions
