@@ -1,6 +1,6 @@
 Package: giftwrap
 Title: Take Shell Commands and Turn Them into R Functions
-Version: 0.0.3
+Version: 0.0.4
 Authors@R: 
     person(given = "Chris",
            family = "Cardillo",
@@ -17,7 +17,8 @@ Imports:
     namespace,
     processx,
     utils,
-    readr
+    readr,
+    tibble
 Suggests: 
     testthat,
     covr

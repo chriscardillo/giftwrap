@@ -1,4 +1,4 @@
-context("temp_ functions write readable files")
+context("temp_* functions write readable files")
 
 csv <- temp_csv(mtcars)
 rds <- temp_rds(mtcars)
