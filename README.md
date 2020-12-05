@@ -144,7 +144,7 @@ Now your package can access a command like `aws s3 ls` with the syntax `aws$s3_l
 
 #### gcloud in RStudio
 
-After you have [installed gcloud](https://cloud.google.com/sdk/docs/quickstart-macos) (and make sure to run `install.sh` when you do), follow these steps to ensure gcloud will work in RStudio on your local machine:
+After you have [installed gcloud](https://cloud.google.com/sdk/docs/quickstart) (and make sure to run `install.sh` when you do), follow these steps to ensure gcloud will work in RStudio on your local machine:
 
   1) In your terminal, run `which gcloud`
   2) From the result, something like `/usr/local/google-cloud-sdk/bin/gcloud`, copy up to `bin`. In this example, we'd copy `/usr/local/google-cloud-sdk/bin`
