@@ -83,7 +83,7 @@ giftwrap currently comes with the following lexicons:
   - `az` - [Azure](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-macos?view=azure-cli-latest)
   - `brew` - [Homebrew](https://brew.sh/)
   - `docker` - [Docker](https://docs.docker.com/get-started/#download-and-install-docker-desktop)
-  - `gcloud` - [Google Cloud Platform](https://cloud.google.com/sdk/docs/quickstart-macos)
+  - `gcloud` - [Google Cloud Platform](https://cloud.google.com/sdk/docs/quickstart)
       - `gcloud` requires a little extra work to get working with RStudio, see [below](#gcloud-in-rstudio).
   - `gh` - [GitHub](https://cli.github.com/manual/installation)
   - `git` - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
