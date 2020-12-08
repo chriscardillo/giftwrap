@@ -4,7 +4,7 @@
 \alias{giftwrap}
 \title{The caller function that will live inside of factory function}
 \usage{
-giftwrap(command, ..., process_echo = T)
+giftwrap(command, ..., process_echo = TRUE)
 }
 \arguments{
 \item{command}{a shell command}

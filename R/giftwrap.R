@@ -40,7 +40,7 @@ format_args <- function(...){
 #' @param process_echo set to FALSE to surpress terminal messages when command is run
 #' @param ... named and unnamed arguments to be giftwrapped
 #' @return messages from the running command, errors if failure
-giftwrap <- function(command, ..., process_echo = T){
+giftwrap <- function(command, ..., process_echo = TRUE){
     full_command <- unlist(strsplit(trimws(command), " "))
     base_command <- full_command[1]
     subcommands <- full_command[!full_command %in% base_command]
