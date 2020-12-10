@@ -4,6 +4,8 @@
 #' the path to that file. This can be used, for example, as an argument to a
 #' giftwrapped function.
 #' 
+#' @importFrom readr write_csv
+#' 
 #' @param x An object
 #' @param ... Extra arguments passed to the relevant writing function (such as
 #' \code{\link[readr]{write_csv}} for \code{temp_csv})
@@ -27,12 +29,14 @@ temp_csv <- function(x, ...) {
 }
 
 #' @rdname temporary
+#' @importFrom readr write_rds
 #' @export
 temp_rds <- function(x, ...) {
   temp_write(x, readr::write_rds, ...)
 }
 
 #' @rdname temporary
+#' @importFrom readr write_lines
 #' @export
 temp_lines <- function(x, ...) {
   temp_write(x, readr::write_lines, ...)

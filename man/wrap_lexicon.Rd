@@ -8,7 +8,7 @@ wrap_lexicon(
   lexicon,
   commands = NULL,
   subcommands = NULL,
-  drop_base = F,
+  drop_base = FALSE,
   env = parent.frame(),
   use_namespace = NULL
 )

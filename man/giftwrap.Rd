@@ -11,7 +11,7 @@ giftwrap(command, ..., process_echo = TRUE)
 
 \item{...}{named and unnamed arguments to be giftwrapped}
 
-\item{process_echo}{set to FALSE to surpress terminal messages when command is run}
+\item{process_echo}{set to FALSE to suppress terminal messages when command is run}
 }
 \value{
 messages from the running command, errors if failure

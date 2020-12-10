@@ -37,7 +37,7 @@ format_args <- function(...){
 #'
 #' @importFrom processx run
 #' @param command a shell command
-#' @param process_echo set to FALSE to surpress terminal messages when command is run
+#' @param process_echo set to FALSE to suppress terminal messages when command is run
 #' @param ... named and unnamed arguments to be giftwrapped
 #' @return messages from the running command, errors if failure
 giftwrap <- function(command, ..., process_echo = TRUE){
@@ -104,7 +104,7 @@ wrap_commands <- function(..., env=parent.frame(), base_remove=NULL, use_namespa
 #' @param use_namespace a character string of a namespace for giftwrap to create and export the lexicon functions into
 #' @return Functions exported to the specified environment
 #' @export
-wrap_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=F, env=parent.frame(), use_namespace=NULL){
+wrap_lexicon <-function(lexicon, commands=NULL, subcommands=NULL, drop_base=FALSE, env=parent.frame(), use_namespace=NULL){
     check_lexicon(lexicon)
     if(!is.null(commands)){
         lexicon <- lexicon[grep(paste(commands, collapse = "|"), lexicon$command), ]
